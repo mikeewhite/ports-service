@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: service
+    ports:
+      - "9000:9000"
+    environment:
+      - GRPC_REFLECTION_ENABLED=true # for debugging purposes
+    command: ./ports-service
+
+  ingestor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ingestor
+    command: ./ports-ingestor
+    depends_on:
+      - service
