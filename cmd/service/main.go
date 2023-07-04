@@ -11,6 +11,8 @@ import (
 
 	"github.com/mikeewhite/ports-service/pkg/clog"
 	"github.com/mikeewhite/ports-service/pkg/config"
+	"github.com/mikeewhite/ports-service/pkg/domain/ports"
+	"github.com/mikeewhite/ports-service/pkg/domain/ports/memory"
 	"github.com/mikeewhite/ports-service/pkg/grpc"
 )
 
@@ -33,7 +35,12 @@ func main() {
 		panic(fmt.Errorf("failed to parse config struct: %w\n", err))
 	}
 
-	server := grpc.NewServer(cfg.GRPCServer)
+	portsRepo := memory.New()
+	portService, err := ports.NewService(ports.WithInMemoryRepository(portsRepo))
+	if err != nil {
+		panic(fmt.Errorf("failed to initialise port service: %w\n", err))
+	}
+	server := grpc.NewServer(cfg.GRPCServer, *portService)
 	if err := server.Serve(ctx); err != nil {
 		clog.Errorf("gRPC server stopped due to error: %s\n", err.Error())
 	}

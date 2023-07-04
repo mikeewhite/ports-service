@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/caarlos0/env/v9 v9.0.0
+	github.com/stretchr/testify v1.8.4
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.24.0
