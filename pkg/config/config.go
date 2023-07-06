@@ -2,7 +2,8 @@ package config
 
 // Config defines the configuration for this application
 type Config struct {
-	GRPCServer *GRPCServer
+	IngestFilepath string `env:"INGEST_FILEPATH"`
+	GRPCServer     *GRPCServer
 }
 
 // GRPCServer defines the configuration for a gRPC server

@@ -17,6 +17,11 @@ services:
       context: .
       dockerfile: Dockerfile
       target: ingestor
+    environment:
+      - GRPC_SERVER_ADDRESS=service:9000
+      - INGEST_FILEPATH=/ingest/ports.json
+    volumes:
+      - ./pkg/ingest/testdata:/ingest/
     command: ./ports-ingestor
     depends_on:
       - service

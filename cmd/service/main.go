@@ -26,7 +26,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	go func() {
 		s := <-signals
-		clog.Warnf("\nSignal received (%s). Shutting down\n", s.String())
+		clog.Warnf("Signal received (%s). Shutting down\n", s.String())
 		cancel()
 	}()
 

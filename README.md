@@ -40,4 +40,3 @@ export GRPC_REFLECTION_ENABLED="true"
 
 ## TODOs
 - [] Move protobuf code generation into Docker (and remove generated files from source control)
-- [] An actuator/readiness endpoint should be exposed on the service and the ingestor should be started via a script that polls that endpoint waiting for a successful response before starting 
