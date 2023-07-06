@@ -34,6 +34,7 @@ The applications get then be started with:
 ```bash
 export GRPC_SERVER_ADDRESS="localhost:9000"
 export GRPC_REFLECTION_ENABLED="true"
+export INGEST_FILEPATH="<path-to-json-file>" 
 ./ports-service
 ./ports-ingestor
 ```
